@@ -64,14 +64,14 @@ const PlacementsPage = () => {
         {/* Staggered Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pb-12 animate-[fadeUp_0.8s_ease_forwards] opacity-0" style={{ animationDelay: '0.4s' }}>
           {[
-            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-razil.png', name: 'Razil' },
+            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-Amaljith.png', name: 'Amaljith' },
             { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-minhaj.png', name: 'Minhaj' },
+            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-razil.png', name: 'Razil' },
+            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-sabiqa.png', name: 'Sabiqa' },
+            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-safa.png', name: 'Safa' },
             { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-shamil.png', name: 'Shamil' },
             { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-shifla-sheri.png', name: 'Shifla Sheri' },
-            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-suhana.png', name: 'Suhana' },
-            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-safa.png', name: 'Safa' },
-            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-sabiqa.png', name: 'Sabiqa' },
-            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-Amaljith.png', name: 'Amaljith' }
+            { img: 'https://iamscampus.in/wp-content/uploads/2025/11/Placements-iams-for-suhana.png', name: 'Suhana' }
           ].map((student, idx) => (
             <div 
               key={idx} 

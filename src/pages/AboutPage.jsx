@@ -6,13 +6,13 @@ const AboutPage = () => {
   }, []);
 
   const features = [
-    { title: "Experienced Teachers", desc: "Learn from highly qualified and dedicated faculty." },
     { title: "AC Classrooms", desc: "Comfortable, modern learning spaces for better focus." },
-    { title: "Personal Mentoring", desc: "Individual attention to help students discover their passion." },
-    { title: "Moral & Social Values", desc: "Emphasis on character building and social responsibility." },
     { title: "Career Guidance", desc: "Clear pathways and support for future goals." },
-    { title: "Modern Facilities", desc: "Well-equipped labs, library, and digital learning tools." },
+    { title: "Experienced Teachers", desc: "Learn from highly qualified and dedicated faculty." },
     { title: "Freedom of Expression", desc: "A campus culture that respects student voices and creativity." },
+    { title: "Modern Facilities", desc: "Well-equipped labs, library, and digital learning tools." },
+    { title: "Moral & Social Values", desc: "Emphasis on character building and social responsibility." },
+    { title: "Personal Mentoring", desc: "Individual attention to help students discover their passion." },
     { title: "Student-Centered", desc: "Every decision revolves around students' growth and success." }
   ];
 

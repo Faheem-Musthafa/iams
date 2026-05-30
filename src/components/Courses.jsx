@@ -7,6 +7,34 @@ const Courses = () => {
 
   const courses = [
     {
+      title: '+1, +2 Commerce Tuition',
+      desc: 'Building strong concepts for high scores.',
+      duration: 'Tuition',
+      img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop',
+      alt: 'Students studying commerce topics'
+    },
+    {
+      title: 'AI Integrated Digital Tools',
+      desc: 'Automate tasks & boost productivity.',
+      duration: '6 Months',
+      img: 'https://iamscampus.in/wp-content/uploads/2025/05/ChatGPT-Image-May-14-2025-07_41_54-PM-1024x683.png',
+      alt: 'Concept art of artificial intelligence integration'
+    },
+    {
+      title: 'Business Management',
+      desc: 'Elevate your career.',
+      duration: '1 Year',
+      img: 'https://iamscampus.in/wp-content/uploads/2025/07/0654.png',
+      alt: 'Professionals discussing business strategies'
+    },
+    {
+      title: 'Corporate Accounts with GST',
+      desc: 'Streamline corporate accounting.',
+      duration: '6 Months',
+      img: 'https://iamscampus.in/wp-content/uploads/2025/07/0956.png',
+      alt: 'Financial accounting and charts'
+    },
+    {
       title: 'Digital Marketing',
       desc: 'Master the art of digital marketing.',
       duration: '6 Months',
@@ -21,39 +49,11 @@ const Courses = () => {
       alt: 'Designer working on a digital illustration'
     },
     {
-      title: 'Business Management',
-      desc: 'Elevate your career.',
-      duration: '1 Year',
-      img: 'https://iamscampus.in/wp-content/uploads/2025/07/0654.png',
-      alt: 'Professionals discussing business strategies'
-    },
-    {
-      title: 'AI Integrated Digital Tools',
-      desc: 'Automate tasks & boost productivity.',
-      duration: '6 Months',
-      img: 'https://iamscampus.in/wp-content/uploads/2025/05/ChatGPT-Image-May-14-2025-07_41_54-PM-1024x683.png',
-      alt: 'Concept art of artificial intelligence integration'
-    },
-    {
-      title: 'Corporate Accounts with GST',
-      desc: 'Streamline corporate accounting.',
-      duration: '6 Months',
-      img: 'https://iamscampus.in/wp-content/uploads/2025/07/0956.png',
-      alt: 'Financial accounting and charts'
-    },
-    {
       title: 'Spoken English',
       desc: 'Improve your English proficiency.',
       duration: '6 Months',
       img: 'https://iamscampus.in/wp-content/uploads/2025/06/5646757-1024x269.png',
       alt: 'People speaking and communicating'
-    },
-    {
-      title: '+1, +2 Commerce Tuition',
-      desc: 'Building strong concepts for high scores.',
-      duration: 'Tuition',
-      img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop',
-      alt: 'Students studying commerce topics'
     }
   ];
 

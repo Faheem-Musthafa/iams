@@ -8,13 +8,13 @@ const GalleryPage = () => {
   const images = [
     { src: "https://iamscampus.in/wp-content/uploads/2025/11/HEADER-IMAGE-2-scaled.png", title: "Campus Life" },
     { src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800&auto=format&fit=crop", title: "Classrooms" },
-    { src: "https://iamscampus.in/wp-content/uploads/2025/05/394266147_24100616746220454_3943914626806249714_n2.jpg", title: "Study Sessions" },
-    { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", title: "Group Discussions" },
-    { src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop", title: "Student Work" },
-    { src: "https://iamscampus.in/wp-content/uploads/2025/05/ChatGPT-Image-May-14-2025-07_48_43-PM-1024x683.png", title: "Digital Seminars" },
     { src: "https://images.unsplash.com/photo-1511649475669-e288648b2339?q=80&w=800&auto=format&fit=crop", title: "Design Lab" },
+    { src: "https://iamscampus.in/wp-content/uploads/2025/05/ChatGPT-Image-May-14-2025-07_48_43-PM-1024x683.png", title: "Digital Seminars" },
+    { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", title: "Group Discussions" },
     { src: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=800&auto=format&fit=crop", title: "Interactive Learning" },
-    { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop", title: "Seminars" }
+    { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop", title: "Seminars" },
+    { src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop", title: "Student Work" },
+    { src: "https://iamscampus.in/wp-content/uploads/2025/05/394266147_24100616746220454_3943914626806249714_n2.jpg", title: "Study Sessions" }
   ];
 
   return (
