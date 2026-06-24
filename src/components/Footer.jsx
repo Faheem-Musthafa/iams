@@ -75,9 +75,21 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
           <p>&copy; {new Date().getFullYear()} IAMS Campus. All Rights Reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
-            <a href="#" aria-label="Facebook" className="hover:text-white focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">FB</a>
-            <a href="#" aria-label="Instagram" className="hover:text-white focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">IN</a>
-            <a href="#" aria-label="Twitter" className="hover:text-white focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">TW</a>
+            <a href="https://www.facebook.com/iams_campus/" target="_blank" rel="noreferrer" aria-label="Facebook" className="text-slate-500 hover:text-brand-lime transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/iams__campus/" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-slate-500 hover:text-brand-lime transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@IAMSCAMPUS" target="_blank" rel="noreferrer" aria-label="Youtube" className="text-slate-500 hover:text-brand-lime transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.54a29 29 0 0 0 .46 5.12 2.78 2.78 0 0 0 1.95 1.96c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96 29 29 0 0 0 .46-5.12 29 29 0 0 0-.46-5.12z"></path><polygon points="9.75 15.02 15.5 11.54 9.75 8.06 9.75 15.02"></polygon></svg>
+            </a>
           </div>
         </div>
       </div>

@@ -22,6 +22,9 @@ const Testimonials = () => {
     }
   ];
 
+  // Duplicate for seamless infinite marquee scroll
+  const marqueeTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
+
   return (
     <section id="reviews" className="section-container pb-20">
       
@@ -55,36 +58,40 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {testimonials.map((test, idx) => (
-            <article className="bg-[#151518] p-8 rounded-[2rem] border border-white/5 hover:border-brand-lime/30 transition-colors" key={idx}>
-              <div className="flex gap-1 text-brand-lime mb-6" aria-label="5 out of 5 stars">
-                <span aria-hidden="true">★★★★★</span>
-              </div>
-              <p className="text-slate-300 mb-8 leading-relaxed text-lg">
-                "{test.text}"
-              </p>
-              <div className="flex items-center gap-4">
-                <img 
-                  src={test.img} 
-                  alt={test.alt} 
-                  loading="lazy"
-                  width="48"
-                  height="48"
-                  className="w-12 h-12 rounded-full object-cover grayscale" 
-                />
-                <div>
-                  <div className="font-bold text-white">{test.name}</div>
-                  <div className="text-xs text-slate-400">{test.course}</div>
+        <div className="overflow-hidden group flex w-full relative">
+          <div className="flex gap-6 w-max animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]">
+            {marqueeTestimonials.map((test, idx) => (
+              <article className="bg-[#151518] p-8 rounded-[2rem] border border-white/5 hover:border-brand-lime/30 transition-colors w-[350px] md:w-[400px] flex-shrink-0" key={idx}>
+                <div className="flex gap-1 text-brand-lime mb-6" aria-label="5 out of 5 stars">
+                  <span aria-hidden="true">★★★★★</span>
                 </div>
-              </div>
-            </article>
-          ))}
+                <p className="text-slate-300 mb-8 leading-relaxed text-lg">
+                  "{test.text}"
+                </p>
+                <div className="flex items-center gap-4">
+                  <img 
+                    src={test.img} 
+                    alt={test.alt} 
+                    loading="lazy"
+                    width="48"
+                    height="48"
+                    className="w-12 h-12 rounded-full object-cover grayscale" 
+                  />
+                  <div>
+                    <div className="font-bold text-white">{test.name}</div>
+                    <div className="text-xs text-slate-400">{test.course}</div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
         
         {/* Massive Marquee */}
-        <div className="mt-20 overflow-hidden border-t border-white/10 pt-10" aria-hidden="true">
-          <div className="flex gap-8 whitespace-nowrap opacity-50 font-display font-black text-4xl md:text-6xl text-transparent [-webkit-text-stroke:1px_white]">
+        <div className="mt-20 overflow-hidden border-t border-white/10 pt-10 relative flex w-full" aria-hidden="true">
+          <div className="flex gap-8 whitespace-nowrap opacity-50 font-display font-black text-4xl md:text-6xl text-transparent [-webkit-text-stroke:1px_white] w-max animate-[marquee_20s_linear_infinite]">
+            <span>INNOVATE + INSPIRE + CREATE + </span>
+            <span>INNOVATE + INSPIRE + CREATE + </span>
             <span>INNOVATE + INSPIRE + CREATE + </span>
             <span>INNOVATE + INSPIRE + CREATE + </span>
           </div>

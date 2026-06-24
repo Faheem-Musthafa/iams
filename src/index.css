@@ -11,6 +11,8 @@
   --color-brand-lime: #bef264;
   
   --animate-fade-up: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-blob: blob 10s infinite;
+  --animate-sheen: sheen 2s infinite;
 }
 
 @layer base {
@@ -46,6 +48,32 @@
   }
 }
 
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 @layer utilities {
   .bg-grid-pattern {
     background-size: 40px 40px;
@@ -55,6 +83,15 @@
   }
   .bg-glassmorphism {
     @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.02)];
+  }
+  .bg-glass-dark {
+    @apply bg-[#0f172a]/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.2)];
+  }
+  .sheen-overlay {
+    @apply absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] transition-all duration-700;
+  }
+  .group:hover .sheen-overlay {
+    @apply translate-x-[150%];
   }
 }
 

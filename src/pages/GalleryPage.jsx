@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import SEO from '../components/SEO';
 
 const GalleryPage = () => {
   useEffect(() => {
@@ -18,7 +19,13 @@ const GalleryPage = () => {
   ];
 
   return (
-    <main className="pt-36 pb-20 min-h-screen bg-slate-50 relative overflow-hidden">
+    <>
+      <SEO
+        title="Campus Life & Gallery | IAMS Campus Malappuram"
+        description="Take a look at the vibrant campus life, modern facilities, classrooms, and student events at IAMS Campus in Malappuram, Kerala."
+        path="/gallery"
+      />
+      <main className="pt-36 pb-20 min-h-screen bg-slate-50 relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 bg-grid-pattern pointer-events-none -z-10"></div>
       <div className="absolute top-40 left-10 w-[500px] h-[500px] bg-brand-lime/10 blur-[150px] rounded-full pointer-events-none -z-10"></div>
@@ -65,6 +72,7 @@ const GalleryPage = () => {
 
       </div>
     </main>
+    </>
   );
 };
 
