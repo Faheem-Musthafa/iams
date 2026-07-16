@@ -1,9 +1,10 @@
-import { createServer } from 'node:http';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { dirname, extname, join, resolve } from 'node:path';
-import puppeteer from 'puppeteer';
+import { readFile, rm, writeFile } from 'node:fs/promises';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import { build } from 'vite';
 
 const distDirectory = resolve('dist');
+const serverDirectory = resolve('dist-ssr');
 const shellHtml = await readFile(join(distDirectory, 'index.html'), 'utf8');
 const sitemap = await readFile(join(distDirectory, 'sitemap.xml'), 'utf8');
 const publicRoutes = [...sitemap.matchAll(/<loc>(https:\/\/iamscampus\.in[^<]*)<\/loc>/g)]
@@ -14,99 +15,44 @@ if (!publicRoutes.length) {
   throw new Error('No prerender routes were found in dist/sitemap.xml.');
 }
 
-const routes = [...publicRoutes, '/404'];
-
-const contentTypes = {
-  '.css': 'text/css; charset=utf-8',
-  '.html': 'text/html; charset=utf-8',
-  '.ico': 'image/x-icon',
-  '.js': 'text/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.png': 'image/png',
-  '.svg': 'image/svg+xml',
-  '.txt': 'text/plain; charset=utf-8',
-  '.webp': 'image/webp',
-  '.xml': 'application/xml; charset=utf-8',
-};
-
-const server = createServer(async (request, response) => {
-  try {
-    const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
-    const isPageRequest = pathname === '/' || extname(pathname) === '';
-
-    if (isPageRequest) {
-      response.writeHead(200, { 'Content-Type': contentTypes['.html'] });
-      response.end(shellHtml);
-      return;
-    }
-
-    const filePath = join(distDirectory, pathname.replace(/^\/+/, ''));
-    if (!filePath.startsWith(`${distDirectory}/`)) {
-      response.writeHead(403);
-      response.end('Forbidden');
-      return;
-    }
-
-    const file = await readFile(filePath);
-    response.writeHead(200, { 'Content-Type': contentTypes[extname(filePath)] || 'application/octet-stream' });
-    response.end(file);
-  } catch {
-    response.writeHead(404);
-    response.end('Not found');
-  }
+await rm(serverDirectory, { recursive: true, force: true });
+await build({
+  logLevel: 'warn',
+  build: {
+    ssr: resolve('src/entry-server.jsx'),
+    outDir: serverDirectory,
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        entryFileNames: 'entry-server.mjs',
+      },
+    },
+  },
 });
 
-await new Promise((resolveServer) => server.listen(0, '127.0.0.1', resolveServer));
+const { render } = await import(`${pathToFileURL(join(serverDirectory, 'entry-server.mjs')).href}?t=${Date.now()}`);
+const routes = [...publicRoutes, '/404'];
 
-const address = server.address();
-const origin = `http://127.0.0.1:${address.port}`;
-let browser;
+for (const route of routes) {
+  const { appHtml, headHtml } = render(route);
+  const html = shellHtml
+    .replace('</head>', `${headHtml}\n</head>`)
+    .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
 
-try {
-  browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-  });
+  const titleCount = (html.match(/<title/g) || []).length;
+  const canonicalCount = (html.match(/rel="canonical"/g) || []).length;
 
-  const page = await browser.newPage();
-  await page.setViewport({ width: 480, height: 850, deviceScaleFactor: 1 });
-  await page.setRequestInterception(true);
-  page.on('request', (interceptedRequest) => {
-    if (interceptedRequest.url().startsWith(origin)) {
-      interceptedRequest.continue();
-    } else {
-      interceptedRequest.abort();
-    }
-  });
-
-  for (const route of routes) {
-    await page.goto(`${origin}${route}`, { waitUntil: 'domcontentloaded', timeout: 30_000 });
-    await page.waitForSelector('main h1', { timeout: 10_000 });
-    await page.evaluate(() => new Promise((resolveFrame) => {
-      requestAnimationFrame(() => requestAnimationFrame(resolveFrame));
-    }));
-
-    const html = await page.content();
-    const titleCount = (html.match(/<title/g) || []).length;
-    const canonicalCount = (html.match(/rel="canonical"/g) || []).length;
-
-    if (titleCount !== 1 || canonicalCount !== 1) {
-      throw new Error(`Invalid metadata at ${route}: titles=${titleCount}, canonicals=${canonicalCount}`);
-    }
-
-    const outputPath = route === '/'
-      ? join(distDirectory, 'index.html')
-      : join(distDirectory, `${route.replace(/^\/+|\/+$/g, '')}.html`);
-
-    await mkdir(dirname(outputPath), { recursive: true });
-    await writeFile(outputPath, html);
-    console.log(`Prerendered ${route}`);
+  if (titleCount !== 1 || canonicalCount !== 1) {
+    throw new Error(`Invalid metadata at ${route}: titles=${titleCount}, canonicals=${canonicalCount}`);
   }
-} finally {
-  await browser?.close();
-  await new Promise((resolveServer, rejectServer) => {
-    server.close((error) => error ? rejectServer(error) : resolveServer());
-  });
+
+  const outputPath = route === '/'
+    ? join(distDirectory, 'index.html')
+    : join(distDirectory, `${route.replace(/^\/+|\/+$/g, '')}.html`);
+
+  await writeFile(outputPath, html);
+  console.log(`Prerendered ${route}`);
 }
 
+await rm(serverDirectory, { recursive: true, force: true });
 console.log(`Prerendered ${publicRoutes.length} public routes from sitemap.xml plus 404.html.`);

@@ -18,7 +18,7 @@ npm run lint
 npm run build
 ```
 
-The production build is written to `dist/`. The `postbuild` step uses current Puppeteer to prerender every URL listed in `sitemap.xml`, so page-specific titles, descriptions, canonical URLs, visible content, and JSON-LD are present in the generated HTML.
+The production build is written to `dist/`. The `postbuild` step uses React's server renderer to prerender every URL listed in `sitemap.xml`, so page-specific titles, descriptions, canonical URLs, visible content, and JSON-LD are present in the generated HTML. It does not require Chrome or system browser libraries.
 
 ## Deploy To Vercel
 
