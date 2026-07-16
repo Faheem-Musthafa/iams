@@ -34,7 +34,7 @@ const SEO = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex, follow" />}
+      <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
 
       {/* Open Graph */}
       <meta property="og:site_name" content={SITE_NAME} />
@@ -42,7 +42,9 @@ const SEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
+      <meta property="og:locale" content="en_IN" />
       <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content={`${SITE_NAME} students and campus`} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

@@ -3,66 +3,44 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <section className="relative pt-36 pb-20 section-container overflow-hidden">
-      {/* Background Grids & Glowing Blobs */}
-      <div className="absolute inset-0 bg-grid-pattern pointer-events-none -z-10"></div>
-      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-brand-lime/10 blur-[150px] rounded-full pointer-events-none -z-10 animate-blob"></div>
-      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-brand-accent/5 blur-[180px] rounded-full pointer-events-none -z-10 animate-blob" style={{ animationDelay: '3s' }}></div>
-
       {/* Top Header Section */}
       <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-16 px-4">
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 text-brand-dark font-bold text-xs uppercase tracking-widest mb-8 shadow-sm animate-[fadeUp_0.8s_ease_forwards] opacity-0">
-          <span className="w-2.5 h-2.5 rounded-full bg-brand-lime shadow-[0_0_8px_rgba(202,240,15,0.8)] animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-slate-100 border border-slate-200 text-brand-dark font-bold text-xs uppercase tracking-widest mb-8 shadow-sm">
           Admissions Open 2026
         </div>
 
-        <h1 className="heading-xl tracking-tight mb-8 animate-[fadeUp_0.8s_ease_0.1s_forwards] opacity-0">
-          Empowering Careers <br className="hidden md:block" /> Through <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-brand-dark to-slate-700 font-black">Education<span className="absolute bottom-2 left-0 w-full h-[6px] bg-brand-lime -z-10 rounded-full"></span></span>
+        <h1 className="heading-xl tracking-tight mb-8">
+          Commerce Tuition & Career Courses <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-dark to-slate-600 font-black">in Malappuram</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-500 max-w-2xl mb-12 leading-relaxed font-medium animate-[fadeUp_0.8s_ease_0.2s_forwards] opacity-0">
-          From digital marketing to business management, we deliver industry-focused programs that elevate your skills and drive career growth. Let's create your future.
+        <p className="text-lg md:text-xl text-slate-500 max-w-2xl mb-12 leading-relaxed font-semibold">
+          Join +1 and +2 Commerce tuition or build job-ready skills through Business Management, Corporate Accounts, Digital Marketing, and more near Tirurangadi.
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 w-full sm:w-auto animate-[fadeUp_0.8s_ease_0.3s_forwards] opacity-0">
-          <Link to="/courses" className="btn btn-primary w-full sm:w-auto group/btn flex items-center justify-center gap-2">
-            Explore Programs
+        <div className="flex flex-wrap items-center justify-center gap-4 w-full sm:w-auto">
+          <a href="https://wa.me/919846067770?text=Hi%20IAMS%20Campus%2C%20I%20would%20like%20admission%20details%20for%202026." target="_blank" rel="noreferrer" className="btn btn-primary w-full sm:w-auto group/btn flex items-center justify-center gap-2">
+            Book Free Counselling
             <span className="group-hover/btn:translate-x-1 inline-block transition-transform duration-300">→</span>
-          </Link>
-          <Link to="/about" className="btn btn-secondary w-full sm:w-auto hover:border-slate-300">
-            Learn More
-          </Link>
+          </a>
+          <Link to="/plus-one-commerce-tuition-malappuram" className="btn btn-secondary w-full sm:w-auto">Commerce Tuition Details</Link>
+        </div>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-slate-600" aria-label="IAMS Campus highlights">
+          <span>10+ years of experience</span><span aria-hidden="true">•</span><span>Personal mentoring</span><span aria-hidden="true">•</span><span>Career support</span>
         </div>
       </div>
 
       {/* Massive Rounded Image Container */}
-      <div className="w-full relative rounded-[2.5rem] md:rounded-[3.5rem] bg-brand-dark overflow-hidden h-[500px] md:h-[680px] animate-[fadeUp_0.8s_ease_0.2s_forwards] opacity-0 shadow-2xl border-4 border-white">
+      <div className="w-full relative rounded-[2.5rem] md:rounded-[3.5rem] bg-brand-dark overflow-hidden h-[450px] md:h-[600px] shadow-xl border border-slate-100">
         <img
           src="https://iamscampus.in/wp-content/uploads/2025/11/HEADER-IMAGE-2-scaled.png"
           alt="Students at IAMS Campus in Malappuram"
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover opacity-90 scale-[1.01] hover:scale-[1.03] transition-transform duration-[4000ms] ease-out"
+          className="absolute inset-0 w-full h-full object-cover opacity-95 scale-[1.01] hover:scale-[1.03] transition-transform duration-[3000ms] ease-out"
         />
         
         {/* Subtle Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 via-brand-dark/10 to-transparent"></div>
-
-        {/* Floating Badges */}
-        <div className="absolute top-10 left-10 hidden md:flex flex-col gap-1 bg-white/80 backdrop-blur-xl border border-white/40 px-6 py-4 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-bounce" style={{animationDuration: '4s'}}>
-          <div className="flex gap-1 text-brand-lime text-xl drop-shadow-sm" aria-hidden="true">★★★★★</div>
-          <div className="font-display font-black text-slate-900 text-lg">10+ Years</div>
-          <div className="text-xs text-slate-600 font-bold uppercase tracking-wider">Excellence</div>
-        </div>
-
-        <div className="absolute bottom-10 right-10 hidden md:flex items-center gap-4 bg-glass-dark px-6 py-4 rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 hover:shadow-[0_0_30px_rgba(190,242,100,0.2)] transition-all duration-500 cursor-default group">
-          <div className="w-12 h-12 bg-brand-lime rounded-full flex items-center justify-center text-brand-dark font-black text-lg shadow-[0_0_15px_rgba(190,242,100,0.4)] group-hover:shadow-[0_0_25px_rgba(190,242,100,0.6)] transition-shadow duration-500">
-            1K+
-          </div>
-          <div className="text-white">
-            <div className="font-display font-black text-lg leading-none mb-1">Students</div>
-            <div className="text-xs text-slate-300 font-bold uppercase tracking-wider">Placed Successfully</div>
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/30 via-transparent to-transparent"></div>
       </div>
     </section>
   );

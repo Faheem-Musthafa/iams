@@ -11,13 +11,28 @@
   --color-brand-lime: #bef264;
   
   --animate-fade-up: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  --animate-blob: blob 10s infinite;
-  --animate-sheen: sheen 2s infinite;
 }
 
 @layer base {
   html, body {
-    @apply bg-brand-bg text-slate-900 font-sans antialiased selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden scroll-smooth;
+    @apply bg-brand-bg text-slate-900 font-sans antialiased selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden;
+  }
+
+  /* Lenis smooth scrolling config */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+  .lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis-stopped {
+    overflow: hidden;
+  }
+  .lenis-scrolling iframe {
+    pointer-events: none;
   }
   
   /* UX Pro Max: Accessibility focus rings */
@@ -48,64 +63,26 @@
   }
 }
 
-@keyframes blob {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-}
-
-@keyframes sheen {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
 @layer utilities {
-  .bg-grid-pattern {
-    background-size: 40px 40px;
-    background-image: 
-      linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
-  }
   .bg-glassmorphism {
     @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.02)];
   }
   .bg-glass-dark {
     @apply bg-[#0f172a]/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.2)];
   }
-  .sheen-overlay {
-    @apply absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] transition-all duration-700;
-  }
-  .group:hover .sheen-overlay {
-    @apply translate-x-[150%];
-  }
 }
 
 @layer components {
   .heading-xl {
-    @apply font-display font-black text-5xl md:text-7xl lg:text-[5.5rem] tracking-tight leading-[0.95] mb-6;
+    @apply font-display font-black text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-tight leading-[0.95] mb-6;
   }
   
   .heading-lg {
-    @apply font-display font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05];
+    @apply font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05];
   }
   
   .heading-md {
-    @apply font-display font-bold text-2xl md:text-3xl lg:text-4xl tracking-tight;
+    @apply font-display font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tight;
   }
 
   .pill-badge {
@@ -117,15 +94,15 @@
   }
 
   .btn-primary {
-    @apply bg-brand-dark text-white hover:bg-slate-800 hover:shadow-[0_10px_30px_rgba(15,23,42,0.15)] hover:-translate-y-0.5 active:translate-y-0;
+    @apply bg-brand-dark text-white hover:bg-slate-800 shadow-sm transition-all duration-300;
   }
   
   .btn-lime {
-    @apply bg-brand-lime text-brand-dark hover:bg-[#a3e635] hover:shadow-[0_10px_30px_rgba(190,242,100,0.3)] hover:-translate-y-0.5 active:translate-y-0;
+    @apply bg-brand-lime text-brand-dark hover:bg-[#a3e635] shadow-sm transition-all duration-300;
   }
 
   .btn-secondary {
-    @apply bg-white text-brand-dark border border-slate-200 hover:border-brand-dark hover:bg-slate-50 hover:-translate-y-0.5 active:translate-y-0;
+    @apply bg-white text-brand-dark border border-slate-200 hover:bg-slate-50 shadow-sm transition-all duration-300;
   }
 
   .container {

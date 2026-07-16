@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -13,11 +14,6 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location]);
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -34,9 +30,8 @@ const Navbar = () => {
           
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <Link to="/" aria-label="IAMS Campus Home" className="font-display text-xl md:text-2xl font-black text-brand-dark tracking-tighter hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-brand-lime rounded-lg">
-              IAMS
-              <span className="text-brand-lime ml-1">●</span>
+            <Link to="/" onClick={() => setMobileMenuOpen(false)} aria-label="IAMS Campus Home" className="flex items-center hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-brand-lime rounded-lg">
+              <img src={logo} alt="IAMS Campus Logo" className="h-6 md:h-7 w-auto object-contain brightness-0" />
             </Link>
           </div>
           
@@ -56,8 +51,8 @@ const Navbar = () => {
           {/* CTA */}
           <div className="hidden md:flex gap-3 items-center">
             <Link to="/contact" className="text-[13px] font-bold text-brand-dark hover:opacity-70 transition-opacity mr-1 p-2 focus-visible:ring-2 focus-visible:ring-brand-lime rounded-lg">Contact Us</Link>
-            <a href="https://play.google.com/store/apps/details?id=com.iamscampus.iamscampus_sm&hl=en_IN" target="_blank" rel="noreferrer" className="bg-brand-dark text-brand-lime px-5 py-2.5 rounded-full text-[13px] font-bold hover:bg-slate-800 transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2">
-              Get App
+            <a href="https://wa.me/919846067770?text=Hi%20IAMS%20Campus%2C%20I%20would%20like%20admission%20details." target="_blank" rel="noreferrer" className="bg-brand-dark text-brand-lime px-5 py-2.5 rounded-full text-[13px] font-bold hover:bg-slate-800 transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2">
+              Enquire Now
             </a>
           </div>
           
@@ -85,6 +80,7 @@ const Navbar = () => {
               <Link 
                 key={item.name} 
                 to={item.href} 
+                onClick={() => setMobileMenuOpen(false)}
                 className={`font-display font-bold text-2xl transition-colors py-3 border-b border-slate-100 ${location.pathname === item.href ? 'text-brand-lime' : 'text-brand-dark hover:text-brand-lime'}`}
               >
                 {item.name}
@@ -92,8 +88,8 @@ const Navbar = () => {
             ))}
           </div>
           <div className="mt-8 flex flex-col gap-4">
-            <Link to="/contact" className="btn btn-secondary w-full justify-center">Contact Us</Link>
-            <a href="https://play.google.com/store/apps/details?id=com.iamscampus.iamscampus_sm&hl=en_IN" target="_blank" rel="noreferrer" className="btn btn-primary w-full justify-center text-brand-lime">Download App</a>
+            <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-secondary w-full justify-center">Contact Us</Link>
+            <a href="https://wa.me/919846067770?text=Hi%20IAMS%20Campus%2C%20I%20would%20like%20admission%20details." onClick={() => setMobileMenuOpen(false)} target="_blank" rel="noreferrer" className="btn btn-primary w-full justify-center text-brand-lime">WhatsApp Admissions</a>
           </div>
         </div>
       )}

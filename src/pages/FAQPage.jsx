@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import SEO from '../components/SEO';
-import { Link } from 'react-router-dom';
 
 const faqs = [
   {
@@ -22,6 +21,22 @@ const faqs = [
   {
     question: "How do I apply for a course?",
     answer: "You can apply directly through our website by visiting the 'Courses' page and clicking 'Apply Now'. Alternatively, you can visit our campus at NP Center Kakkad, Malappuram or call us at 96331 30516."
+  },
+  {
+    question: "Do you offer +1 Commerce tuition near Tirurangadi?",
+    answer: "Yes. IAMS Campus at NP Center, Kakkad serves +1 and +2 Commerce students from Tirurangadi, Malappuram, and nearby areas. Contact admissions for current batch timings."
+  },
+  {
+    question: "Which subjects are covered in +1 Commerce tuition?",
+    answer: "The tuition focuses on building clear concepts and exam confidence across core Commerce areas such as Accountancy, Business Studies, and Economics. Contact the campus for the current subject and batch schedule."
+  },
+  {
+    question: "Is the Business Management course available in Malappuram?",
+    answer: "Yes. IAMS Campus offers a one-year Business Management program in Malappuram with practical learning, career guidance, and placement support."
+  },
+  {
+    question: "How can I get course fees and batch timings?",
+    answer: "Call admissions at +91 96331 30516 or send IAMS Campus a WhatsApp message. The team will share the latest fee details, eligibility, available batches, and admission steps."
   }
 ];
 
@@ -48,27 +63,23 @@ const FAQPage = () => {
   return (
     <>
       <SEO
-        title="FAQ - Common Questions | IAMS Campus Malappuram"
-        description="Find answers to frequently asked questions about our courses, admissions, placements, and campus life at IAMS Campus."
+        title="Commerce Tuition & Course FAQs | IAMS Campus Malappuram"
+        description="Get answers about +1 Commerce tuition, Business Management, fees, batches, admissions and placement support at IAMS Campus near Tirurangadi."
         path="/faq"
         schema={faqSchema}
       />
       <main className="pt-36 pb-20 min-h-screen bg-slate-50 relative overflow-hidden">
-      {/* Background Patterns */}
-      <div className="absolute inset-0 bg-grid-pattern pointer-events-none -z-10"></div>
-      <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-brand-lime/10 blur-[150px] rounded-full pointer-events-none -z-10 animate-blob"></div>
-      <div className="absolute top-80 left-10 w-[400px] h-[400px] bg-brand-accent/5 blur-[150px] rounded-full pointer-events-none -z-10 animate-blob" style={{ animationDelay: '2s' }}></div>
 
       <div className="section-container max-w-4xl mx-auto">
-        <div className="mb-16 text-center animate-[fadeUp_0.8s_ease_forwards] opacity-0">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 text-brand-dark font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">
+        <div className="mb-16 text-center">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 text-brand-dark font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">
             Help Center
           </div>
           <h1 className="heading-xl tracking-tight mb-6">
-            Frequently Asked <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-brand-dark to-slate-700 font-black">Questions<span className="absolute bottom-2 left-0 w-full h-[6px] bg-brand-lime -z-10 rounded-full"></span></span>
+            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-dark to-slate-700 font-black">Questions</span>
           </h1>
-          <p className="text-slate-500 text-lg md:text-xl font-medium max-w-2xl mx-auto">
-            Find answers to the most common questions about our courses, admissions, and campus life.
+          <p className="text-slate-500 text-lg md:text-xl font-semibold max-w-2xl mx-auto">
+            Get clear answers about Commerce tuition, Business Management, admissions, batch timings, and career support.
           </p>
         </div>
 
@@ -78,21 +89,18 @@ const FAQPage = () => {
             return (
               <div 
                 key={idx} 
-                className={`relative bg-glassmorphism rounded-3xl border transition-all duration-500 overflow-hidden group animate-[fadeUp_0.8s_ease_forwards] opacity-0`}
-                style={{ animationDelay: `${0.2 + idx * 0.1}s`, borderColor: isOpen ? 'rgba(202,240,15,0.4)' : 'rgba(255,255,255,0.5)' }}
+                className={`relative bg-glassmorphism rounded-2xl md:rounded-3xl border transition-all duration-500 overflow-hidden group ${isOpen ? 'border-slate-300 shadow-sm' : 'border-slate-100'}`}
               >
-                {/* Sheen effect on hover when closed */}
-                {!isOpen && <div className="sheen-overlay"></div>}
                 
                 <button 
                   onClick={() => setOpenIndex(isOpen ? -1 : idx)}
-                  className="w-full text-left px-8 py-6 flex items-center justify-between focus:outline-none relative z-10"
+                  className="w-full text-left px-5 py-4 md:px-8 md:py-6 flex items-center justify-between focus:outline-none relative z-10 gap-4"
                 >
-                  <h3 className={`font-display font-black text-xl md:text-2xl transition-colors duration-300 ${isOpen ? 'text-brand-dark' : 'text-slate-700 group-hover:text-brand-dark'}`}>
+                  <h3 className={`font-display font-bold text-base md:text-xl lg:text-2xl transition-colors duration-300 ${isOpen ? 'text-brand-dark' : 'text-slate-700 group-hover:text-brand-dark'}`}>
                     {faq.question}
                   </h3>
-                  <div className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-brand-dark text-brand-lime rotate-180 shadow-lg' : 'bg-white border border-slate-200 text-slate-500 group-hover:bg-brand-lime group-hover:text-brand-dark group-hover:border-transparent'}`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <div className={`w-8 h-8 md:w-10 md:h-10 shrink-0 rounded-full flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-brand-dark text-brand-lime rotate-180 shadow-md' : 'bg-white border border-slate-200 text-slate-500 group-hover:bg-brand-lime group-hover:text-brand-dark group-hover:border-transparent'}`}>
+                    <svg className="w-4 h-4 md:w-5 md:h-5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                   </div>
@@ -101,7 +109,7 @@ const FAQPage = () => {
                 {/* CSS Grid trick for smooth height transition */}
                 <div className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                   <div className="overflow-hidden">
-                    <div className="px-8 pb-8 text-slate-600 text-lg leading-relaxed font-medium">
+                    <div className="px-5 pb-5 md:px-8 md:pb-8 text-slate-600 text-xs md:text-base leading-relaxed font-semibold">
                       {faq.answer}
                     </div>
                   </div>
@@ -112,15 +120,14 @@ const FAQPage = () => {
         </div>
 
         {/* Still have questions banner */}
-        <div className="mt-16 bg-glass-dark rounded-[2.5rem] p-10 md:p-14 text-center text-white relative overflow-hidden animate-[fadeUp_0.8s_ease_forwards] opacity-0" style={{ animationDelay: '0.8s' }}>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-lime/10 blur-[100px] rounded-full pointer-events-none"></div>
-          <h3 className="font-display font-black text-3xl mb-4 relative z-10">Still have questions?</h3>
-          <p className="text-slate-300 text-lg mb-8 relative z-10 max-w-xl mx-auto">
+        <div className="mt-16 bg-glass-dark rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-14 text-center text-white relative overflow-hidden border border-white/5">
+          <h3 className="font-display font-bold text-xl md:text-3xl mb-4 relative z-10">Still have questions?</h3>
+          <p className="text-slate-300 text-sm md:text-lg mb-8 relative z-10 max-w-xl mx-auto font-medium">
             Can't find the answer you're looking for? Please chat to our friendly team.
           </p>
-          <Link to="/contact" className="inline-block py-4 px-8 rounded-full bg-brand-lime hover:bg-white hover:shadow-[0_0_30px_rgba(190,242,100,0.4)] hover:-translate-y-1 text-brand-dark font-black text-lg transition-all duration-300 relative z-10">
-            Get In Touch
-          </Link>
+          <a href="https://wa.me/919846067770?text=Hi%20IAMS%20Campus%2C%20I%20have%20a%20question%20about%20admissions." target="_blank" rel="noreferrer" className="inline-block py-3 px-6 md:py-4 md:px-8 rounded-full bg-brand-lime hover:bg-white text-brand-dark font-bold text-sm md:text-lg transition-all duration-300 relative z-10">
+            Ask on WhatsApp
+          </a>
         </div>
       </div>
     </main>

@@ -14,21 +14,17 @@ const PrivacyPolicyPage = () => {
         path="/privacy"
       />
       <main className="pt-36 pb-20 min-h-screen bg-slate-50 relative overflow-hidden">
-      {/* Background Patterns */}
-      <div className="absolute inset-0 bg-grid-pattern pointer-events-none -z-10"></div>
-      <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-brand-lime/10 blur-[150px] rounded-full pointer-events-none -z-10 animate-blob"></div>
-      <div className="absolute top-80 left-10 w-[400px] h-[400px] bg-brand-accent/5 blur-[150px] rounded-full pointer-events-none -z-10 animate-blob" style={{ animationDelay: '2s' }}></div>
 
       <div className="section-container max-w-4xl mx-auto">
-        <div className="mb-12 text-center animate-[fadeUp_0.8s_ease_forwards] opacity-0">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 text-brand-dark font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">
+        <div className="mb-12 text-center">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 text-brand-dark font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">
             Legal
           </div>
           <h1 className="heading-lg tracking-tight mb-6">Privacy Policy</h1>
           <p className="text-slate-500 text-lg">Last updated: June 2026</p>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl rounded-3xl p-8 md:p-12 prose prose-slate max-w-none animate-[fadeUp_0.8s_ease_0.2s_forwards] opacity-0">
+        <div className="bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl rounded-3xl p-8 md:p-12 prose prose-slate max-w-none">
           <h2 className="text-2xl font-bold text-brand-dark mb-4">1. Introduction</h2>
           <p className="text-slate-600 mb-8 leading-relaxed">
             At IAMS Campus, we are committed to protecting your personal information and your right to privacy. 
