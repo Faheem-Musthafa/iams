@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import 'lenis/dist/lenis.css';
 import Navbar from './components/Navbar';
@@ -19,6 +19,22 @@ import MobileConversionBar from './components/MobileConversionBar';
 import ProgramPage from './pages/ProgramPage';
 import programPages from './data/programPages';
 
+let lenisInstance = null;
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (lenisInstance) {
+      lenisInstance.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
+
+  return null;
+};
+
 const useSmoothScrolling = () => {
   useEffect(() => {
     let animationFrame;
@@ -36,6 +52,7 @@ const useSmoothScrolling = () => {
         gestureOrientation: 'vertical',
         smoothWheel: true,
       });
+      lenisInstance = lenis;
 
       const raf = (time) => {
         lenis.raf(time);
@@ -51,12 +68,14 @@ const useSmoothScrolling = () => {
       disposed = true;
       if (animationFrame) cancelAnimationFrame(animationFrame);
       lenis?.destroy();
+      lenisInstance = null;
     };
   }, []);
 };
 
 export const AppShell = () => (
   <>
+    <ScrollToTop />
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
