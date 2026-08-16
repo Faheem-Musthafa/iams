@@ -5,6 +5,12 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/studio/:path*",
+      "destination": "/studio/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
