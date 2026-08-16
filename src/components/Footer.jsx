@@ -1,7 +1,17 @@
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import { urlFor } from '../lib/sanity';
 
-const Footer = () => {
+const logo = '/favicon.png';
+
+const Footer = ({ siteSettings }) => {
+  const siteTitle = siteSettings?.siteTitle || 'IAMS Campus';
+  const logoUrl = urlFor(siteSettings?.logo)?.width(128).height(128).fit('max').url() || logo;
+  const contactPhone = siteSettings?.contactPhone || '+91 96331 30516';
+  const contactEmail = siteSettings?.contactEmail || 'info@iamscampus.in';
+  const phoneHref = `tel:${contactPhone.replace(/[^+\\d]/g, '')}`;
+  const addressLine1 = siteSettings?.addressLine1 || 'NP Center, Kakkad';
+  const addressLine2 = siteSettings?.addressLine2 || 'Malappuram, Kerala';
+  const footerDescription = siteSettings?.footerDescription || 'Equipping students with knowledge and practical skills they need to thrive in the modern corporate world.';
   return (
     <footer className="section-container pb-24 md:pb-6">
       <div className="rounded-box bg-brand-lime text-brand-dark p-10 md:p-16 flex flex-col md:flex-row justify-between items-center gap-8 mb-6">
@@ -20,12 +30,11 @@ const Footer = () => {
       <div className="rounded-box bg-brand-dark text-white p-10 md:p-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-b border-white/10 pb-12 mb-8">
           <div className="col-span-2 md:col-span-1">
-            <div className="mb-6">
-              <img src={logo} alt="IAMS Campus Logo" className="h-8 w-auto object-contain" />
+            <div className="mb-6 flex items-center gap-3">
+              <img src={logoUrl} alt={`${siteTitle} logo`} className="h-12 w-auto object-contain" />
+              <span className="font-display text-xl font-black tracking-tight text-white">{siteTitle}</span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Equipping students with knowledge and practical skills they need to thrive in the modern corporate world.
-            </p>
+            <p className="text-slate-400 text-sm leading-relaxed">{footerDescription}</p>
           </div>
           
           <nav aria-label="Company Navigation">
@@ -52,18 +61,18 @@ const Footer = () => {
             <h4 className="font-bold mb-6 uppercase text-xs tracking-widest text-slate-500">Contact</h4>
             <ul className="space-y-3">
               <li>
-                <a href="tel:9633130516" className="text-slate-300 text-sm hover:text-brand-lime transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">+91 96331 30516</a>
+                <a href={phoneHref} className="text-slate-300 text-sm hover:text-brand-lime transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">{contactPhone}</a>
               </li>
               <li>
-                <a href="mailto:info@iamscampus.in" className="text-slate-300 text-sm hover:text-brand-lime transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">info@iamscampus.in</a>
+                <a href={`mailto:${contactEmail}`} className="text-slate-300 text-sm hover:text-brand-lime transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">{contactEmail}</a>
               </li>
-              <li className="text-slate-400 text-sm leading-relaxed">NP Center, Kakkad<br />Malappuram, Kerala</li>
+              <li className="text-slate-400 text-sm leading-relaxed">{addressLine1}<br />{addressLine2}</li>
             </ul>
           </address>
         </div>
         
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} IAMS Campus. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {siteTitle}. All Rights Reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <a href="https://www.facebook.com/iams_campus/" target="_blank" rel="noreferrer" aria-label="Facebook" className="text-slate-500 hover:text-brand-lime transition-colors focus-visible:ring-2 focus-visible:ring-brand-lime rounded-sm">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

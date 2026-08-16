@@ -4,18 +4,18 @@
   --font-sans: "Inter", sans-serif;
   --font-display: "Plus Jakarta Sans", sans-serif;
   
-  --color-brand-bg: #f8fafc;
+  --color-brand-bg: #f4f6ff;
   --color-brand-surface: #ffffff;
-  --color-brand-dark: #0f172a;
-  --color-brand-accent: #c084fc;
-  --color-brand-lime: #bef264;
+  --color-brand-dark: #2e398f;
+  --color-brand-accent: #647cc2;
+  --color-brand-lime: #c8d7ff;
   
   --animate-fade-up: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @layer base {
   html, body {
-    @apply bg-brand-bg text-slate-900 font-sans antialiased selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden;
+    @apply bg-brand-bg text-brand-dark font-sans antialiased selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden;
   }
 
   /* Lenis smooth scrolling config */
@@ -48,7 +48,7 @@
     @apply bg-slate-100;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 rounded-full border-2 border-slate-100 hover:bg-slate-400 transition-colors;
+    @apply bg-brand-accent rounded-full border-2 border-slate-100 hover:bg-brand-dark transition-colors;
   }
 }
 
@@ -68,7 +68,7 @@
     @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.02)];
   }
   .bg-glass-dark {
-    @apply bg-[#0f172a]/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.2)];
+    @apply bg-brand-dark/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.2)];
   }
 }
 
@@ -94,11 +94,11 @@
   }
 
   .btn-primary {
-    @apply bg-brand-dark text-white hover:bg-slate-800 shadow-sm transition-all duration-300;
+    @apply bg-brand-dark text-white hover:bg-[#222c78] shadow-sm transition-all duration-300;
   }
   
   .btn-lime {
-    @apply bg-brand-lime text-brand-dark hover:bg-[#a3e635] shadow-sm transition-all duration-300;
+    @apply bg-brand-lime text-brand-dark hover:bg-[#adc3fa] shadow-sm transition-all duration-300;
   }
 
   .btn-secondary {

@@ -117,7 +117,7 @@ const Courses = () => {
           {/* View All Card */}
           <Link
             to="/courses"
-            className="group relative h-[240px] md:h-[360px] rounded-3xl overflow-hidden bg-brand-lime flex flex-col items-center justify-center cursor-pointer p-4 md:p-8 text-center hover:bg-[#a3e635] transition-all duration-300 shadow-sm"
+            className="group relative h-[240px] md:h-[360px] rounded-3xl overflow-hidden bg-brand-lime flex flex-col items-center justify-center cursor-pointer p-4 md:p-8 text-center hover:bg-[#adc3fa] transition-all duration-300 shadow-sm"
           >
              <div className="w-10 h-10 md:w-14 md:h-14 bg-brand-dark rounded-full flex items-center justify-center text-brand-lime mb-3 md:mb-6 group-hover:scale-110 transition-all duration-300 shadow-md">
                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>

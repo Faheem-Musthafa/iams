@@ -11,6 +11,17 @@ npm run dev
 
 The development server runs at `http://localhost:5173` unless that port is already occupied.
 
+## Sanity CMS
+
+1. Create a project and public dataset in [Sanity Manage](https://www.sanity.io/manage).
+2. Copy `.env.example` to `.env.local` and replace both project ID placeholders with your Sanity project ID.
+3. Run `npm run sanity:dev` to start the editor at `http://localhost:3333`, then create a **Site Settings** document.
+4. For Vercel, add `VITE_SANITY_PROJECT_ID` and `VITE_SANITY_DATASET` as build-time environment variables and redeploy.
+
+The website continues to use its bundled defaults until these values exist. Once connected, published Site Settings control the name, logo, navigation, footer copy, phone, email, and address shared by the header and footer.
+
+Create **Page** documents to take full control of any route. A page document can be assigned to `/` with the `home` slug, or any route by using its path without the leading slash (for example `about` or `digital-marketing-course-malappuram`). Editors can compose Hero, text, feature-grid, course-list, FAQ, gallery, testimonial, and CTA sections. Courses, FAQs, gallery images, and testimonials are maintained as reusable documents and can be referenced from multiple pages.
+
 ## Production Checks
 
 ```bash

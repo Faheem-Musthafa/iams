@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import 'lenis/dist/lenis.css';
@@ -18,6 +18,8 @@ import BusinessManagementPage from './pages/BusinessManagementPage';
 import MobileConversionBar from './components/MobileConversionBar';
 import ProgramPage from './pages/ProgramPage';
 import programPages from './data/programPages';
+import { getSiteSettings } from './lib/sanity';
+import ManagedPage from './components/ManagedPage';
 
 let lenisInstance = null;
 
@@ -73,38 +75,45 @@ const useSmoothScrolling = () => {
   }, []);
 };
 
-export const AppShell = () => (
+export const AppShell = ({ siteSettings = null }) => (
   <>
     <ScrollToTop />
-    <Navbar />
+    <Navbar siteSettings={siteSettings} />
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/courses" element={<CoursesPage />} />
-      <Route path="/gallery" element={<GalleryPage />} />
-      <Route path="/placements" element={<PlacementsPage />} />
-      <Route path="/contact" element={<ContactPage />} />
-      <Route path="/privacy" element={<PrivacyPolicyPage />} />
-      <Route path="/faq" element={<FAQPage />} />
-      <Route path="/plus-one-commerce-tuition-malappuram" element={<CommerceTuitionPage />} />
-      <Route path="/business-management-course-malappuram" element={<BusinessManagementPage />} />
+      <Route path="/" element={<ManagedPage slug="home" fallback={<Home />} />} />
+      <Route path="/about" element={<ManagedPage slug="about" fallback={<AboutPage />} />} />
+      <Route path="/courses" element={<ManagedPage slug="courses" fallback={<CoursesPage />} />} />
+      <Route path="/gallery" element={<ManagedPage slug="gallery" fallback={<GalleryPage />} />} />
+      <Route path="/placements" element={<ManagedPage slug="placements" fallback={<PlacementsPage />} />} />
+      <Route path="/contact" element={<ManagedPage slug="contact" fallback={<ContactPage />} />} />
+      <Route path="/privacy" element={<ManagedPage slug="privacy" fallback={<PrivacyPolicyPage />} />} />
+      <Route path="/faq" element={<ManagedPage slug="faq" fallback={<FAQPage />} />} />
+      <Route path="/plus-one-commerce-tuition-malappuram" element={<ManagedPage slug="plus-one-commerce-tuition-malappuram" fallback={<CommerceTuitionPage />} />} />
+      <Route path="/business-management-course-malappuram" element={<ManagedPage slug="business-management-course-malappuram" fallback={<BusinessManagementPage />} />} />
       {programPages.map((program) => (
-        <Route key={program.path} path={program.path} element={<ProgramPage program={program} />} />
+        <Route key={program.path} path={program.path} element={<ManagedPage slug={program.path.slice(1)} fallback={<ProgramPage program={program} />} />} />
       ))}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
-    <Footer />
+    <Footer siteSettings={siteSettings} />
     <MobileConversionBar />
   </>
 );
 
 function App() {
+  const [siteSettings, setSiteSettings] = useState(null);
   useSmoothScrolling();
+
+  useEffect(() => {
+    getSiteSettings()
+      .then(setSiteSettings)
+      .catch((error) => console.error('Unable to load Sanity site settings.', error));
+  }, []);
 
   return (
     <HelmetProvider>
       <Router>
-        <AppShell />
+        <AppShell siteSettings={siteSettings} />
       </Router>
     </HelmetProvider>
   );

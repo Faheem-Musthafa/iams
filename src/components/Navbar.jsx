@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import { urlFor } from '../lib/sanity';
 
-const Navbar = () => {
+const logo = '/favicon.png';
+
+const Navbar = ({ siteSettings }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const siteTitle = siteSettings?.siteTitle || 'IAMS Campus';
+  const logoUrl = urlFor(siteSettings?.logo)?.width(128).height(128).fit('max').url() || logo;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +19,14 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const defaultNavLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Courses', href: '/courses' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Placements', href: '/placements' },
   ];
+  const navLinks = siteSettings?.navigation?.length ? siteSettings.navigation : defaultNavLinks;
 
   return (
     <>
@@ -30,8 +35,9 @@ const Navbar = () => {
           
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <Link to="/" onClick={() => setMobileMenuOpen(false)} aria-label="IAMS Campus Home" className="flex items-center hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-brand-lime rounded-lg">
-              <img src={logo} alt="IAMS Campus Logo" className="h-6 md:h-7 w-auto object-contain brightness-0" />
+            <Link to="/" onClick={() => setMobileMenuOpen(false)} aria-label={`${siteTitle} Home`} className="flex items-center gap-2 hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-brand-lime rounded-lg">
+              <img src={logoUrl} alt={`${siteTitle} logo`} className="h-10 md:h-12 w-auto object-contain" />
+              <span className="font-display text-base font-black tracking-tight text-brand-dark md:text-lg">{siteTitle}</span>
             </Link>
           </div>
           
